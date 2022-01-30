@@ -71,3 +71,12 @@ export async function createPost(post: NewPost) {
     );
     return getPost(post.slug);
 }
+
+
+export async function updatePost(post: NewPost) {
+    const md = `---\ntitle: ${post.title}\n---\n\n${post.markdown}`;
+    await fs.writeFile(
+        path.join(postsPath, post.slug + ".md"),
+        md
+    );
+}

@@ -1,4 +1,4 @@
-import { useLoaderData } from "remix";
+import { useLoaderData, Link } from "remix";
 import type { LoaderFunction } from "remix";
 import { getPost } from "~/post";
 import invariant from "tiny-invariant";
@@ -10,10 +10,10 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export default function PostSlug() {
     const post = useLoaderData()
-    console.log(post)
 
     return (
         <div>
+            <Link to={`/posts/edit/${post.slug}`}>edit</Link>
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
     );
